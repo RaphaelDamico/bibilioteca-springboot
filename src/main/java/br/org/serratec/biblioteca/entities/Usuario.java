@@ -16,20 +16,20 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Integer userId;
-	
+
 	@Column(name = "user_nome")
 	private String userNome;
-	
+
 	@Column(name = "user_email")
 	private String userEmail;
-	
+
 	@Column(name = "user_password")
 	private String userPassword;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "perfil_id")
 	private Perfil perfil;
-	
+
 	public Usuario() {
 	}
 
@@ -77,10 +77,4 @@ public class Usuario {
 		return perfil;
 	}
 
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-
-	
-	
 }
