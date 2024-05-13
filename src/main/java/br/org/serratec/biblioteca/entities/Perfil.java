@@ -2,6 +2,9 @@ package br.org.serratec.biblioteca.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,29 +24,35 @@ CREATE TABLE public.perfil (
 
 @Entity
 @Table(name = "perfil")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "perfilId",
+		scope = Perfil.class
+)
 public class Perfil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "perfil_id")
 	private Integer perfilId;
-	
+
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "descricao")
 	private String descricao;
-	
+
 	@OneToMany(mappedBy = "perfil")
-	private List<Usuario> usuario; 
+	private List<Usuario> usuario;
 
 	public Perfil() {
 
 	}
 
-	public Perfil(Integer perfilId, String nome, String descricao) {
+	public Perfil(Integer perfilId, String nome, String descricao, List<Usuario> usuario) {
 		this.perfilId = perfilId;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.usuario = usuario;
 	}
 
 	public Integer getPerfilId() {
@@ -69,5 +78,15 @@ public class Perfil {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public List<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 
 }
