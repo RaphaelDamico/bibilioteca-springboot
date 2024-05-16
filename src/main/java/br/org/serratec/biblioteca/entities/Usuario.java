@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuario")
@@ -20,10 +22,12 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Integer userId;
-
+	
+	@NotBlank
 	@Column(name = "user_nome")
 	private String userNome;
-
+	
+	@Email(message = "Preencha o campo email corretamente")
 	@Column(name = "user_email")
 	private String userEmail;
 

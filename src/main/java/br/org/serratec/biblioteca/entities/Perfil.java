@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 /*
 CREATE TABLE public.perfil (
@@ -34,7 +35,8 @@ public class Perfil {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "perfil_id")
 	private Integer perfilId;
-
+	
+	@NotBlank(message = "O nome precisa estar preenchido")
 	@Column(name = "nome")
 	private String nome;
 

@@ -19,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import io.micrometer.common.lang.Nullable;
+import jakarta.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -43,6 +44,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setType(URI.create("https://api.biblioteca.com/errors/not-found"));
         return problemDetail;
     }
+	
+	/*
+	 * @ExceptionHandler(ConstraintViolationException.class) ProblemDetail
+	 * handleConstraintViolationException(ConstraintViolationException e) {
+	 * ProblemDetail pd =
+	 * ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR,
+	 * e.getMessage());
+	 * 
+	 * pd.setTitle("O campo está em branco ou não está preenchido corretamente");
+	 * pd.setType(URI.create("http://localhost:8080/errors/internal-server-error"));
+	 * return pd; }
+	 */
 
 
 	@Override
