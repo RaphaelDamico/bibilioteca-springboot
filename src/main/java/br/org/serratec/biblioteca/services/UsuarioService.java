@@ -30,6 +30,14 @@ public class UsuarioService {
 	public Usuario update(Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
+	
+	/*
+	 * public Usuario update(Usuario usuario, Integer id) { Usuario existenteUsuario
+	 * = findById(id); existenteUsuario.setEmail(usuario.getEmail());
+	 * existenteUsuario.setPassword(usuario.getPassword());
+	 * existenteUsuario.setNome(usuario.getNome()); return
+	 * usuarioRepository.save(existenteUsuario); }
+	 */
 
 	public Boolean delete(Integer id) {
 		if(usuarioRepository.existsById(id)) {

@@ -35,28 +35,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		// pd.setDetail("Detalhe da excessão");
 		return ResponseEntity.status(500).body(pd);
 	}
-	
-	@ExceptionHandler(NoSuchElementException.class)
-    ProblemDetail handleNoSuchElementException(NoSuchElementException e) {
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
-        
-        problemDetail.setTitle("Recurso Não Encontrado");
-        problemDetail.setType(URI.create("https://api.biblioteca.com/errors/not-found"));
-        return problemDetail;
-    }
-	
-	/*
-	 * @ExceptionHandler(ConstraintViolationException.class) ProblemDetail
-	 * handleConstraintViolationException(ConstraintViolationException e) {
-	 * ProblemDetail pd =
-	 * ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR,
-	 * e.getMessage());
-	 * 
-	 * pd.setTitle("O campo está em branco ou não está preenchido corretamente");
-	 * pd.setType(URI.create("http://localhost:8080/errors/internal-server-error"));
-	 * return pd; }
-	 */
 
+	@ExceptionHandler(NoSuchElementException.class)
+	ProblemDetail handleNoSuchElementException(NoSuchElementException e) {
+		ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+
+		problemDetail.setTitle("Recurso Não Encontrado");
+		problemDetail.setType(URI.create("https://api.biblioteca.com/errors/not-found"));
+		return problemDetail;
+	}
+
+	@ExceptionHandler(ConstraintViolationException.class)
+	ProblemDetail handleConstraintViolationException(ConstraintViolationException e) {
+		ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+
+		pd.setTitle("O campo está em branco ou não está preenchido corretamente");
+		pd.setType(URI.create("http://localhost:8080/errors/internal-server-error"));
+		return pd;
+	}
 
 	@Override
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers,

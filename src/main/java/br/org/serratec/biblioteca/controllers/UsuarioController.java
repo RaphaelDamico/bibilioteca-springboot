@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.biblioteca.entities.Usuario;
 import br.org.serratec.biblioteca.services.UsuarioService;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuarios")

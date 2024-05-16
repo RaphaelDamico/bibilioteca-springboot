@@ -23,11 +23,11 @@ public class Usuario {
 	@Column(name = "user_id")
 	private Integer userId;
 	
-	@NotBlank
+	@NotBlank(message = "O nome precisa estar preenchido")
 	@Column(name = "user_nome")
 	private String userNome;
 	
-	@Email(message = "Preencha o campo email corretamente")
+	@Email(message = "Preencha o campo email corretamente exemplo@exemplo")
 	@Column(name = "user_email")
 	private String userEmail;
 
