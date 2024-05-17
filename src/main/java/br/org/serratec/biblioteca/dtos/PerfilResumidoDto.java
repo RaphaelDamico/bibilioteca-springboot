@@ -19,4 +19,11 @@ public class PerfilResumidoDto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	@Override
+	public String toString() {
+		return "PerfilResumidoDto [nome=" + nome + ", descricao=" + descricao + "]";
+	}
+	
+	
 }

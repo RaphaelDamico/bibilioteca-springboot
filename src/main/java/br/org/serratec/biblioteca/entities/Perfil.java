@@ -88,6 +88,12 @@ public class Perfil {
 	public void setUsuario(List<Usuario> usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public String toString() {
+		return "Perfil [perfilId=" + perfilId + ", nome=" + nome + ", descricao=" + descricao + ", usuario=" + usuario
+				+ "]";
+	}
 	
 	
 

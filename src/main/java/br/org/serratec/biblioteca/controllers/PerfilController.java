@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.org.serratec.biblioteca.dtos.PerfilResumidoDto;
 import br.org.serratec.biblioteca.entities.Perfil;
 import br.org.serratec.biblioteca.services.PerfilService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/perfis")
@@ -61,7 +62,7 @@ public class PerfilController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Perfil> save( @RequestBody Perfil perfil) {
+	public ResponseEntity<Perfil> save(@Valid @RequestBody Perfil perfil) {
 		return new ResponseEntity<>(perfilService.save(perfil), HttpStatus.CREATED);
 	}
 

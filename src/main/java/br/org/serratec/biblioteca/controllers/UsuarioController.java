@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.biblioteca.entities.Usuario;
 import br.org.serratec.biblioteca.services.UsuarioService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -40,7 +41,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Usuario> save(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario usuario) {
 		return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
 	}
 	

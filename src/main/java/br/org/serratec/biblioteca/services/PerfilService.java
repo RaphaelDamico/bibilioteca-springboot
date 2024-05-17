@@ -19,6 +19,9 @@ public class PerfilService {
 	
 	@Autowired
     private ModelMapper modelMapper;
+	
+	@Autowired
+	EmailService emailService;
 
 	public List<Perfil> findAll() {
 		return perfilRepository.findAll();
@@ -40,6 +43,7 @@ public class PerfilService {
 
 	public Perfil findById(Integer id) {
 		//return perfilRepository.findById(id).orElse(null);
+		//return perfilRepository.findById(id).orElseThrow(() -> new EntidadeNotFoundException("Não foi encontrado um perfil com o id " + id));
 		return perfilRepository.findById(id).get();
 	}
 	
@@ -49,6 +53,8 @@ public class PerfilService {
 		//if(perfil != null)
 		//try {
 			perfilDto = modelMapper.map(perfil, PerfilResumidoDto.class);
+			
+			emailService.enviarEmail("endereco@email.com", "Cadastro de Perfil", perfilDto.toString());
 		//} catch(IllegalArgumentException e) {
 			//throw new IllegalArgumentException("Ocorreu uma excessão: " + e);
 		//}
